@@ -34,6 +34,7 @@
 			$this->define_column('content', 'Content')->invisible()->validation()->fn('trim');
 			$this->define_column('sort_order', 'Sort Order')->validation()->fn('trim')->unique("This sort order is already in use.");
 			$this->define_column('is_enabled', 'Enabled');
+			$this->define_column('published_at', 'Published Date');
 			$this->define_multi_relation_column('images', 'images', 'Images', '@name')->invisible();
 			
 			$this->defined_column_list = array();
@@ -45,6 +46,7 @@
 			$this->add_form_field('is_enabled')->tab($this->strings['model_title'])->renderAs(frm_checkbox);
 			$this->add_form_field('title', 'left')->tab($this->strings['model_title'])->renderAs(frm_text);
 			$this->add_form_field('slug', 'right')->tab($this->strings['model_title'])->renderAs(frm_text);
+			$this->add_form_field('published_at', 'left')->tab($this->strings['model_title']);
 
 			$editor_config = System_HtmlEditorConfig::get($this->module_name, "{$this->strings['model_code']}_description");
 			$field = $this->add_form_field('description')->tab($this->strings['model_title']);
