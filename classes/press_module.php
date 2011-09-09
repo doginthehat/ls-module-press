@@ -1,6 +1,6 @@
 <?
 
-	define('PATH_MOD_PRESS', PATH_APP . '/modules/press');
+	define('PATH_MOD_PRESS', realpath(dirname(__FILE__) . '/../'));
 	
 	class Press_Module extends Core_ModuleBase {
 		const PATH = PATH_MOD_PRESS;
