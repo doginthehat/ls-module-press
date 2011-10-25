@@ -8,8 +8,8 @@
 		protected function get_info() {
 			return new Core_ModuleInfo(
 				"Press",
-				"Adds press releases to your store.",
-				"Limewheel Creative, Inc."
+				"Provides press releases for your store.",
+				"Limewheel Creative Inc."
 			);
 		}
 		
