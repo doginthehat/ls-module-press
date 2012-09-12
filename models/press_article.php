@@ -31,7 +31,7 @@
 
 		public function define_columns($context = null) {
 			$this->define_column('title', 'Title')->order('asc')->validation()->fn('trim')->required("Please specify the title.");
-			$this->define_column('slug', 'Slug')->validation()->fn('trim');
+			$this->define_column('slug', 'Slug')->validation()->fn('trim')->required('Please provide the article slug');
 			$this->define_column('description', 'Description')->invisible()->validation()->fn('trim');
 			$this->define_column('content', 'Content')->invisible()->validation()->fn('trim');
 			$this->define_column('is_enabled', 'Enabled');

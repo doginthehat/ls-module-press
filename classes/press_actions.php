@@ -13,7 +13,7 @@
 		}
 		
 		public function articles() {
-			$this->data['articles'] = Press_Article::create()->where('is_enabled=1')->order('sort_order')->find_all();
+			$this->data['articles'] = Press_Article::create()->where('is_enabled=1')->where('published_at is not null')->order('published_at desc')->find_all();
 		}
 	}
 	
