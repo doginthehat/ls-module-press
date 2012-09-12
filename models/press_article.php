@@ -6,7 +6,8 @@
 			'model_name' => 'article',
 			'model_code' => 'press_article',
 			'table_name' => 'press_articles',
-			'module_name' => 'press'
+			'module_name' => 'press',
+			'content_tab'=>'Content'
 		);
 		
 		public $has_many = array(
@@ -33,7 +34,6 @@
 			$this->define_column('slug', 'Slug')->validation()->fn('trim');
 			$this->define_column('description', 'Description')->invisible()->validation()->fn('trim');
 			$this->define_column('content', 'Content')->invisible()->validation()->fn('trim');
-			$this->define_column('sort_order', 'Sort Order')->validation()->fn('trim')->unique("This sort order is already in use.");
 			$this->define_column('is_enabled', 'Enabled');
 			$this->define_column('published_at', 'Published Date');
 			$this->define_multi_relation_column('images', 'images', 'Images', '@name')->invisible();
@@ -48,7 +48,7 @@
 			$this->add_form_field('is_enabled')->tab($this->strings['model_title'])->renderAs(frm_checkbox);
 			$this->add_form_field('title', 'left')->tab($this->strings['model_title'])->renderAs(frm_text);
 			$this->add_form_field('slug', 'right')->tab($this->strings['model_title'])->renderAs(frm_text);
-			$this->add_form_field('published_at', 'left')->tab($this->strings['model_title']);
+			$this->add_form_field('published_at')->tab($this->strings['model_title']);
 
 			$editor_config = System_HtmlEditorConfig::get($this->module_name, "{$this->strings['model_code']}_description");
 			$field = $this->add_form_field('description')->tab($this->strings['model_title']);
@@ -56,8 +56,8 @@
 			$editor_config->apply_to_form_field($field);
 			
 			$editor_config = System_HtmlEditorConfig::get($this->module_name, "{$this->strings['model_code']}_content");
-			$field = $this->add_form_field('content')->tab($this->strings['model_title']);
-			$field->renderAs(frm_html)->size('small');
+			$field = $this->add_form_field('content')->tab($this->strings['content_tab'])->noLabel();
+			$field->renderAs(frm_html)->size('huge');
 			$editor_config->apply_to_form_field($field);
 			
 			$this->add_form_field('images')->renderAs(frm_file_attachments)->renderFilesAs('image_list')->addDocumentLabel('Add image(s)')->tab('Images')->noAttachmentsLabel('There are no images uploaded')->noLabel()->imageThumbSize(555)->fileDownloadBaseUrl(url('ls_backend/files/get/'));
